@@ -24,7 +24,11 @@ Alright! How do you want to do this?
 		
 	<<else>>\
 		<<if (not _chastity)>>\
-			<<print "[[Use "+_stol+" vibrator on your penis|Use vibrator penis]]">>
+			<<if playerCode.masturbate.penileDisinterest()>>\
+				<div class="tooltip">@@.halftransparent;Use _stol vibrator on your penis@@ <span id="test_surv" class="tooltiptext">After what happened last time, you do not want to feel a machine on your penis right now.</span></div>
+			<<else>>\
+				<<print "[[Use "+_stol+" vibrator on your penis|Use vibrator penis]]">>
+			<<endif>>\
 			<<if playerCode.isButtslut()>>\
 				<<print "[[Use "+_stol+" vibrator in your ass|Use vibrator ass]]">>
 			<<endif>>\
@@ -88,7 +92,6 @@ Alright! How do you want to do this?
 			[[Unlock chastity cage|Masturbate][$flags.chastityLocked=false]]
 		<<endif>>\
 	<<else>>\
-		<!-- [[Remove chastity cage|Masturbate][window.playerCode.removeClothesJS(_c.id)]] -->
 		[[Remove chastity cage|Masturbate][window.wardrobeFuncs.removeClothing('chastity')]]
 	<<endif>>\
 <<endif>>\
