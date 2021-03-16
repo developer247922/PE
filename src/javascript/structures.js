@@ -830,6 +830,7 @@ window.playerList={
 	canBuyBatteries: true,
 	canBuyQualityBatteries: false,
 	canBuyNailPolish: false,
+	canBuySpyCamera: true,
 
 	alarmClockCost: 20,
 	batteriesCost: 5,
