@@ -517,10 +517,10 @@ window.itemFuncs= {
         }
 
         var itemVariants = window.itemFuncs.getChildItemsForMaster(item);
-        console.log(itemVariants);
+        //console.log(itemVariants);
         for(var itmIndex in itemVariants){
             var itemVariant = itemVariants[itmIndex];
-            console.log(itemVariant);
+            //console.log(itemVariant);
             window.itemFuncs.overrideItemVariantProperty(itemVariant, propertyName, propertyValue);
         }
         actVar.itemMasterOverrides.push(item);
