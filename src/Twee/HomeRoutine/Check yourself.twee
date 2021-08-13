@@ -1523,7 +1523,7 @@
 		<<else>>\
 			@@.hero;I so want to get fucked... I mean, to fuck right now, in any way.@@
 		<<endif>>\
-		<<if window.wardrobeFuncs.isItemVariantWearing('buttplug_heart')>>/* if (not playerCode.isWearingOn(itemTypes.Chastity)) and if not playerCode.isHalfHorny() */\
+		<<if window.wardrobeFuncs.isItemVariantWearing('buttplug_heart')>>\
 			&#9702; A small butt-plug occupies your asshole, pressing on your prostate, making your <<print _penis>> slowly drip with precum.\
 			<<if playerCode.isMind_0(true)>>\
 				@@.hero;Fuck, it's even harder to think straight this way.@@
@@ -1684,7 +1684,7 @@
 				<<endif>>\
 			<<elseif window.wardrobeFuncs.isItemVariantWearing('buttplug_vibro')>>\
 				&#9702; The vibro butt-plug buzzes in your asshole, relentlessly keeping you on the edge of orgasm. It slowly massages your prostate, making your penis drip with precum.\
-				<<if playerCode.isMind_0(true)>>/* if not (not playerCode.isWearingOn(itemTypes.Chastity)) and if (not $flags.chastityKey) or (not $flags.chastityLocked) and if not playerCode.isHalfHorny() and if playerCode.isWearing(itemsC.buttPlugDildo) */\
+				<<if playerCode.isMind_0(true)>>\
 					@@.hero;I should be embarrased, but I am way too horny.@@
 				<<elseif playerCode.isMind_1(true)>>\
 					@@.hero;Shit. Now I am leaking all the time. Why does it feel so good?@@

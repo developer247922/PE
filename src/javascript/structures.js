@@ -309,53 +309,7 @@ window.structures={
 			}
 		}
 	},
-
-	setupItems_d: function() {
-		var itemsC=window.itemsC;
-		if (State.active.variables.items == null) {
-			State.active.variables.items = {};
-		}
-		
-		for (var i=0; i < Object.keys(itemsC).length; i++) {
-			if (State.active.variables.items[Object.keys(itemsC)[i]] == null) {
-				State.active.variables.items[Object.keys(itemsC)[i]] = {};
-				
-				var itemObject = State.active.variables.items[Object.keys(itemsC)[i]];
-				var listItemsC = itemsC[Object.keys(itemsC)[i]];
-				
-				itemObject.id = listItemsC.id;
-				
-				if (listItemsC.clothingType > 0) {
-					if (itemObject.ward == null) { itemObject.ward = false; }
-				}
-				
-				if (listItemsC.maxAlt != null) {
-					if (itemObject.curAlt == null) { itemObject.curAlt = 0; }
-					if (itemObject.ownAlt == null) { itemObject.ownAlt = []; }
-					if (itemObject.storeCur == null) { itemObject.storeCur = 0; }
-					if (itemObject.storeAlt == null) { itemObject.storeAlt = []; }
-				}
-				
-			}
-		}
-		
-		// deleting items with no corresponding ID in JavaScript list
-		var itemsList = State.active.variables.items;
-		for (var i=0; i < Object.keys(itemsList).length; i++) {
-			var found = false;
-			
-			for (var j=0; j < Object.keys(itemsC).length; j++) {
-				if (itemsList[Object.keys(itemsList)[i]].id == itemsC[Object.keys(itemsC)[j]].id) {
-					var found = true;
-					break;
-				}
-			}
-			
-			if (!found) {
-				delete itemsList[Object.keys(itemsList)[i]];
-			}
-		}
-	},
+	
 	setupChores: function() {
 		var choresList=window.choresList;
 		if (State.active.variables.chores == null) {
