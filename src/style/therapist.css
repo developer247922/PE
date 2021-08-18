@@ -1,0 +1,11 @@
+.therapist_tv {
+    text-align:center; 
+    background: rgba(255, 255, 255, 0.15); 
+    padding: 1em; 
+    height: 30em;
+}
+
+.therapist_tv img {
+    height: 26em;
+    max-width: 100%;
+}

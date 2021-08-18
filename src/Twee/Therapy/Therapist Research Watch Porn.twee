@@ -1,26 +1,54 @@
 :: Therapist Research Watch Porn
 \
-<<if $showimages>>\
-/* TODO */\
-<<endif>>\
-<<set $player.sexualAcceptance += 1>>
-//This is a place-holder. $player.name is supposed to become more and more relaxed about his sexuality changing and more confident pursuing his secret desires. Sexual acceptance score is now $player.sexualAcceptance, with a score of 20 being the effective maximum.//
-<!--
-<<if playerCode.isMind_0()>>\
-@@.fading_text_long;Something inside of you flinches away, resisting the therapy.@@
-<<elseif playerCode.isMind_1()>>\
-@@.fading_text_long;Something inside of you is still hesitant about the therapy.@@
-<<elseif playerCode.isMind_2()>>\
-@@.fading_text_long;Something inside of you enjoys this, though you still can't quite place exactly what this therapy is.@@
-<<endif>>\
-@@.fading_text_long;But you watch@@\
-@@.fading_text_med;, and watch@@\
-@@.fading_text_fast;, and watch...@@
+You sit in front of the wall-mounted big screen television. While you install the sensor, $therapist turns off the lights and presses a button on the remote.<<if playerCode.isMind_2(true)>> You place your hands in the shackles on the arm-rests. They automatically lock as the screen turns on.<<endif>>
 
-@@.delayed_text_fast;Submit@@\
-@@.delayed_text_med;, give up@@\
-@@.delayed_text_long;, enjoy@@
+<<set _samples = Object.entries(window.therapyResearchImages)>>\
+/* TODO: the following copypasta is really ugly. and the transitions do not work. */\
+<div class="therapist_tv"><span id="sample">\
+<<set _sample = _samples[random(0,_samples.length-1)]>>\
+<<print 'Sample #'+(''+random(0,99999)).padStart(5, "0")+' „'+_sample[0]+'“:\n<img src="'+_sample[1]+'">'>>\
+</span></div>\
+<<timed 3s t8n>><<replace "#sample">>\
+<<set _sample = _samples[random(0,_samples.length-1)]>>\
+<<print 'Sample #'+(''+random(0,99999)).padStart(5, "0")+' „'+_sample[0]+'“:\n<img src="'+_sample[1]+'">'>>\
+<</replace>>\
+<<next>><<replace "#sample">>\
+<<set _sample = _samples[random(0,_samples.length-1)]>>\
+<<print 'Sample #'+(''+random(0,99999)).padStart(5, "0")+' „'+_sample[0]+'“:\n<img src="'+_sample[1]+'">'>>\
+<</replace>>\
+<<next>><<replace "#sample">>\
+<<set _sample = _samples[random(0,_samples.length-1)]>>\
+<<print 'Sample #'+(''+random(0,99999)).padStart(5, "0")+' „'+_sample[0]+'“:\n<img src="'+_sample[1]+'">'>>\
+<</replace>>\
+<<next>><<replace "#sample">>\
+<<set _sample = _samples[random(0,_samples.length-1)]>>\
+<<print 'Sample #'+(''+random(0,99999)).padStart(5, "0")+' „'+_sample[0]+'“:\n<img src="'+_sample[1]+'">'>>\
+<</replace>>\
+<<next>><<replace "#sample">>\
+<<set _sample = _samples[random(0,_samples.length-1)]>>\
+<<print 'Sample #'+(''+random(0,99999)).padStart(5, "0")+' „'+_sample[0]+'“:\n<img src="'+_sample[1]+'">'>>\
+<</replace>>\
+<<next>><<replace "#sample">>Session ended.<</replace>>\
+<</timed>>\
 
-<<delayedLink 5 "Finish watching">>
--->
+You watch the screen while it shows a series of rather short porn clips.\
+<<if playerCode.isNotHorny()>>\
+    Some pique your interests, others not so much. You feel your penis expand during the scenes more to your liking. During the scenes turning you off your penis becomes flaccid again. You really notice how the strength of your (supressed) erection corellates with your interests.\
+    <<run playerCode.changeArousal(20)>>\
+<<elseif playerCode.isHalfHorny()>>\
+    You were a bit hory when you started, so the porn really gets you going. Your penis grows as much as it can inside the cage, twitching and begging to be touched. Only during the less lewd scenes the urge to touch yourself diminishes a little bit.\
+    <<run playerCode.changeArousal(50)>>\
+<<else>>\
+    You have been horny even before you began. No matter the actual content, it seems all really enthralling to you. Your penis hard all the time, uncomfortably pressing against the cage. You are leaking pre in copious amounts, leaving a puddle on the seat.\
+    <<switch playerCode.isMind(true)>><<case 0>>You are embarrassed.<<case 1>>You don't care.<<default>>You are weirdly proud of the lewd mess you are making.<</switch>>\
+<<endif>>\
+<<switch playerCode.isMind(true)>>\
+<<case 0>>\
+    You are uncomfortable looking at porn and being turned on while being watched by $therapist.
+<<case 1>>\
+    You cannot resist playing with your caged cock although you are being watched by $therapist. You do not accomplish anything other than moving the cage around.
+<<default>>\
+    Every now and then you absend-mindedly try to fondle your caged cock, only to be reminded that your hands are bound. During the especially sexy scenes, your penis twitches inside the unyielding cage. All you can do is watch.
+<</switch>>\
+
 [[Finish watching]]

@@ -43,7 +43,7 @@ window.therapySessions=[
 		}
 	},
 	{	//Introduction, third scene, first porn movie
-		text: "@@.therapist;\"Come in, $player.name,\"@@ she says warmly. @@.therapist;\"Thank you for being a part of my research. We are studying how pornography can affect behaviour of young adults.\"\n\n\"You will be presented pornographic material, and I'll be here keeping a close eye on you to assess how they affect you. However, there is a catch: You may absolutely must not masturbate. You and I must stay professional, after all.\"@@\n\nOn one hand, you are surprised by her request, but on the other hand, you are not too keen about wanking in front of $therapist.\n\n@@.therapist;\"There's nothing to worry about, we've already had hundreds of volunteers participate with no ill effects.\"@@\n\nThat's good enough for you, and you sit in front of the wall-mounted big screen television to begin watching. $therapist turns off the lights and presses a button on the remote.",
+		text: "@@.therapist;\"Come in, $player.name,\"@@ she says warmly. @@.therapist;\"Thank you for being a part of my research. We are studying how pornography can affects the sexuality of young adults.\"\n\n\"You will be presented pornographic material, and I'll be monitoring your arousal.@@ <<if window.wardrobeFuncs.getWornItem('chastity')>>@@.therapist;Please attach this pressure sensor to your chastity device.@@<<else>>@@.therapist;Please put this sensor on your penis. I am sure it looks familiar to you.\"@@\n\nShe hands you a device which looks just like a cock cage, but with some wires attached to it.\n\n@@.therapist;\"It has a built-in pressure sensor and will keep you from masturbating. That would interfere with the experiment.\"@@<<endif>>\n\nOn one hand, you are surprised by her request, but on the other hand, you are not too keen about wanking in front of $therapist.\n\n@@.therapist;\"There's nothing to worry about, we've already had hundreds of volunteers participate with no ill effects.\"@@\n\nThat's good enough for you.",
 		check() {
 			return State.active.variables.player.perversion.therapist < therapistPerversion.watchedPorn;
 		},
@@ -281,3 +281,72 @@ window.therapyCode={
 		return tl;
 	}
 }
+
+// TODO: have a better selection of images
+window.therapyResearchImages = {
+	Blowjob: "Images/general/coach_4.gif",
+	Shemale: "Images/general/coach_dick_futa.gif",
+	Anal: "Images/general/dick_sliding_in.gif",
+	Tailplug: "Images/general/foxgirl.gif",
+	Spanking: "Images/general/guardian_spanking.gif",
+	Latex: "Images/general/latex_internet.jpg",
+	Rimming: "Images/general/licking_ass.gif"
+};
+
+window.discoverableKinks = {
+	futa: "futanari",
+
+	creampie: "creampies",
+	bukkake: "bukkake",
+	cumEating: "cum eating",
+	ownCum: "swallowing your own cum",
+	cumSwap: "cum swapping",
+
+	wetting: "wetting",
+	urineDrink: "urine drinking",
+	urinePlay: "urine play",
+	
+	penisShrink: "penis shrinkage",
+	sph: "small penis humiliation",
+
+	bdsm: "BDSM",
+	painPlay: "pain play",
+	xPain: "extreme pain play",
+	petPlay: "petplay",
+	bondage: "bondage",
+	facesit: "facesitting",
+	trampling: "trampling",
+
+	footFetish: "feet",
+	footDisplay: "feet",
+	footWorship: "feet",
+	hosiery: "hosiery",
+	shoeBoot: "boots",
+	footjob: "footjobs",
+
+	clothesOdor: "clothes odor",
+	shoeSockOdor: "sock odor",
+	footOdor: "foot odor",
+	armpitOdor: "armpit odor",
+	assOdor: "ass odor",
+	genitalOdor: "genital odor",
+
+	curse: "cursing",
+	whoring: "whoring",
+	bimbo: "bimbofication",
+	spitting: "spitting",
+	abusive: "abuse",
+	mindControl: "mind control",
+	questionable: "questionable consent",
+	tattoo: "tattoos",
+	piercing: "piercings",
+
+	diapering: "diapers",
+	adultBaby: "adult baby play",
+	ageBehavior: "age play",
+	
+	latex: "latex clothing",
+	leather: "leather clothing",
+	nylon: "nylon clothing",
+	frilly: "frilly clothing"
+};
