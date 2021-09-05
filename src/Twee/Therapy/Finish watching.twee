@@ -1,28 +1,110 @@
 :: Finish watching [pos_1976_1732]
 \
-<div><<RandomImageFromPack "Therapist Office" 400 400>></div>\	
-The television goes dark and $therapist turns the lights on. You blink, realizing your mouth is dry.
-
-@@.therapist;"The time is up,"@@ she says. @@.therapist;"How are you feeling?"@@
-
-<<run playerCode.upArousalTo(20,20)>>\
-Naturally, after watching porn without even touching your penis, you are incredibly horny. $therapist asks detailed questions about your feelings and desires. Due to your lust, you struggle to answer in complete sentences. She listens closely and makes some notes.
-
-<<if $player.perversion.therapist >= therapistPerversion.noticedEffect && playerCode.isMind_2(true)>>\
-When you are finished, $therapist goes through her notes.
-
-@@.therapist;"Based on the data I gathered from, I would not expect any noticable developments in the near future. We can continue to test for long-term effects, though."@@
-
-//You have reached the end of the therapist research content. Game events however may unlock new personal topics to talk about.//
-
+<<set _allowedDiscoverableKinks = Object.keys(window.discoverableKinks).filter(k => $kinkAllow[k])>>\
+<<set _undisclosedKinks = _allowedDiscoverableKinks.filter(k => !$kink[k])>>\
+The television goes dark and $therapist turns the lights on.\
+<<set _discoveredKink = false>>\
+<<if _undisclosedKinks.length>>\
+    <<set _discoveredKink = either(_undisclosedKinks)>>\
+    $therapist excitedly scrolls through the data displayed on her tablet.
+    
+    @@.therapist;"Interesting. These are fantastic results. $player.name, did you know you are into <<print window.discoverableKinks[_discoveredKink]>>?"@@
+    <<set $kink[_discoveredKink] = true>>\
+<<elseif $player.perversion.therapist >= therapistPerversion.noticedEffect && playerCode.isMind_2(true)>>
+    $therapist looks a the data displayed on her tablet and nods.
+    
+    @@.therapist;"These readings confirm the previous results. Nothing new, though."@@
+    
+    //You have reached the end of the therapist research content. Game events however may unlock new personal topics to talk about.//
+<<else>>
+    $therapist scrolls through the data displayed on her tablet. She seems disappointed, but acts professional about it.
+    
+    @@.therapist;"Hm… These results are inconclusive. More reseach is required."@@
 <<endif>>\
-@@.therapist;"Oh, $player.name, don't forget your participation payment."@@
 
-She winks, handing you an envelope with crisp, new currency in it.
+She turns around the tablet and shows it to you:
+
+<canvas id="chart" class="therapist_tv"></canvas>\
+<<script>>
+$(document).one(":passageend", function (event) {
+    let discoveredKink = State.temporary.discoveredKink;
+    let kinkAllow = State.variables.kinkAllow;
+    let kink = State.variables.kink;
+    let discoverableKinkKeys = Object.keys(window.discoverableKinks);
+    let n = 15;
+    if (n > discoverableKinkKeys.length) {
+        alert('Bad developer!');
+    }
+    let keys = new Set();
+    while (keys.size < n) {
+        keys.add(either(discoverableKinkKeys));
+    }
+    keys = Array.from(keys);
+    if (discoveredKink && !keys.includes(discoveredKink)) {
+        keys[random(0, keys.length-1)] = discoveredKink;
+    }
+    let labels = keys;
+    let values = labels.map((k) => {
+        let response = 0;
+        if (kinkAllow[k]) {
+            response += +0.25 + 0.25 * Math.random();
+        } else {
+            response += -0.25 - 0.25 * Math.random();
+        }
+        if (kink[k]) {
+            response += 0.5 + 0.5 * Math.random();
+        }
+        if (k == discoveredKink) {
+            response += 0.5 + 0.5 * Math.random();
+        }
+        return response;
+    });
+    var ctx = document.getElementById('chart').getContext('2d');
+    Chart.defaults.color = '#FFF';
+    var chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Sexual Response',
+                data: values,
+                borderWidth: 2,
+                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            }]
+        },
+        options: {
+            //indexAxis: 'y'
+        }
+    });
+});
+<</script>>\
+
+The graphs and numbers do not make much sense to you, but as long as $therapist pays you for watching porn, you are fine with it.
+
+@@.therapist;"And here is participation payment."@@
+
+She hands you an envelope with crisp, new currency in it.
 
 @@.reward;You earned $<<print rewardMoney.therapistResearch>>!@@
-
 <<set $player.money+=rewardMoney.therapistResearch>>\
+<<if playerCode.isMind_1(true)>>
+    @@.therapist;"Oh and $player.name? I noticed you were trying to touch yourself during the session. Please try to refrain from doing that. Otherwise you would need to pysically restrain yourself to continue participating in the study."@@
+
+    <<if $kink.bondage>>\
+        The thought of being bound while watching porn in front of $therapist arouses you. Well, she already discovered you were into it, so it is not a big deal.
+    <<elseif playerCode.isMind_2(true)>>\
+        You do not feel particularly keen of watching porn in front of $therapist while being bound to the seat, but you are daring enough to do it anyway.
+    <<else>>\
+        You do not know how to feel about that suggestion.
+    <<endif>>\
+<<endif>>\
+<<if _discoveredKink || !playerCode.isMind_2(true)>>
+    You feel like you learned something about yourself.
+    <<set $player.sexualAcceptance += 1>>\
+<<else>>
+    You do not feel much different after today's session.
+<<endif>>
 <<if $player.perversion.therapist == therapistPerversion.watchedPorn>>\
 	[[Go home|Therapist Research Aftereffect]]
 <<else>>\

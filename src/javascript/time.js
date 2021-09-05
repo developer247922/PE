@@ -23,14 +23,18 @@ window.timeCode={
 		return (time.day * 1440 + time.hour * 60 + time.minute);
 	},
 	addMinutes: function(minutes) {
+		this.timedEffects(minutes, 0);
 		var time=State.active.variables.time;
 		time.minute+=minutes;
 		while (time.minute >= 60) {
-			this.addHours(1);
+			this.addHours(1, true);
 			time.minute-=60;
 		}
 	},
-	addHours: function(hours) {
+	addHours: function(hours, ignoreEffects) {
+		if (!ignoreEffects) {
+			this.timedEffects(0, hours);
+		}
 		var time=State.active.variables.time;
 		time.hour+=hours;
 		while (time.hour >= 24) {
@@ -43,6 +47,23 @@ window.timeCode={
 		if (time.hour > max) {
 			time.hour=Math.min(time.hour+hours, max);
 		}
+	},
+	rollover : function(time) {
+		while (time.minute >= 60) {
+			time.hour++;
+			time.minute-=60;
+		}
+		while (time.hour >= 24) {
+			time.day++;
+			time.hour-=24;
+		}
+	},
+	minutesSince : function(earlier,later) {
+		return (later.day * 1440 + later.hour * 60 + later.minute) - (earlier.day * 1440 + earlier.hour * 60 + earlier.minute);
+	},
+	currentTime : function() {
+		var time=State.active.variables.time;
+		return { day : time.day, hour: time.hour, minute: time.minute };
 	},
 	newDay: function() {
 		var time=State.active.variables.time;
@@ -177,7 +198,7 @@ window.timeCode={
 	},
 	canHotelLesson: function() {
 		var time = State.active.variables.time;
-		return (window.timeCode.isSaturday() && time.hour < 18 &&(window.timeCode.isSaturday()||window.timeCode.isSunday()) && State.active.variables.player.ending.comportment.bimbo.hotelBimboLesson);
+		return (time.hour < 18 && (window.timeCode.isSaturday()||window.timeCode.isSunday()) && State.active.variables.player.ending.comportment.bimbo.hotelBimboLesson);
 	},
 	haveSchool: function() {
 		var time=State.active.variables.time;
@@ -218,4 +239,11 @@ window.timeCode={
 			return "It's the weekend, so no school today.";
 		}
 	},
+	timedEffects: function(minutes, hours) {
+		if (window.wardrobeFuncs.getWornItem('buttplug_vibro') && playerCode.masturbate.isReady()) {
+			let horn = (minutes + hours*60) / 5;
+			console.log(`timedEffects: ${minutes}, ${minutes} → ${horn}`);
+			playerCode.changeArousal(horn);
+		}
+	}
 }

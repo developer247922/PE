@@ -48,7 +48,6 @@ window.wordsCode={
 			if (window.wardrobeFuncs.getWornItem('chastity')) { vars.penis="tiny caged penis"; }
 			}
 		vars.skirt="dress";
-		//if (window.playerCode.isWearing(itemsC.skirtTop) || window.playerCode.isWearing(itemsC.sluttyschoolFemale)) { vars.skirt="skirt"; }
 		if (window.wardrobeFuncs.isItemMasterWearing('skirtTop') || window.wardrobeFuncs.isItemMasterWearing('sluttySchoolDress')) { vars.skirt="skirt"; }
 		vars.chest="flat chest";
 		if (body.boobs == 1) { vars.chest="tiny breasts"; }

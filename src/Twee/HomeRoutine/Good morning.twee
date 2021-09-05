@@ -38,15 +38,13 @@
 	<<endif>>\
 <<endif>>\
 \
-<<if ($tasksTeacher.trialChastity.status eq 4) and ($player.exp.chastityExp gte 3) and window.wardrobeFuncs.getWornItem('chastity')>>\
-	<<set $tasksTeacher.trialChastity.status = 6>>\
-<<elseif ($tasksTeacher.trialChastity.status eq 6) and ($player.exp.chastityExp gte 3) and window.wardrobeFuncs.getWornItem('chastity')>>\
+<<if ($tasksTeacher.trialChastity.progress == 1) and ($player.exp.chastityExp gte 3) and window.wardrobeFuncs.getWornItem('chastity')>>\
+	<<set $tasksTeacher.trialChastity.progress to 4>>\
 
 	You've slept well, despite wearing a chastity cage. You can't believe how quickly you got used to it.
 	
-	@@.info;It's time to return the device to receive your pay.@@
+	@@.info;It's time to return the device to receive your pay.<<if $flags.chastityKey>> – At least as soon as you can unlock it.<<endif>>@@
 
-	<<set $tasksTeacher.trialChastity.status = 5>>\
 	/*<<set $tasksTeacher.trialChastity.text.checkMe.reminder = "You completed the trial, now you should return the device to the shop.">>*/\
 <<endif>>\
 <<if $kinkAllow.penisShrink and $flags.penisShrinkSleep and ($flags.penisShrinkProgress gte 1) and ($body.penisShrink.level eq 1) and $time.weekDay() eq 5>>\
@@ -171,17 +169,17 @@
 	<<set $time.guardian.wakeHour to 7>>\
 	<<set $player.perversion.guardianCooldown to 1>>\
 	<<set $player.perversion.guardian to 4>>\
-	<<set $player.masturbationType = 0>>\
+	<<set $player.masturbationType to {}>>\
 	<<if (not $player.hasVibrator)>>\
 		<<set $player.hasVibrator = true>>\
 	<<endif>>\
 	Your eyes slowly open. $Guardian is shaking you awake, looking down at you sternly.
 
-	@@.guardian;"We need to talk. I'd hoped that it was just a phase, but you've shown that you're willing to take your fetishes way further than I expected. Locking yourself in chastity, sticking a vibrator up your ass, and god knows what else you've been up to...."@@
+	@@.guardian;"We need to talk. I'd hoped that it was just a phase, but you've shown that you're willing to take your fetishes way further than I expected. Locking yourself in chastity, sticking a vibrator up your ass, and god knows what else you've been up to...<<if not $flags.playerChoseChastity>>"@@
 	
 	You don't dare tell her that being in chastity wasn't your decision.
 	
-	@@.guardian;"It seems you're just asking to be treated accordingly. I've installed a camera in your room so I can monitor you, just in case your fetishes become a danger to your health. Don't even try to obscure the view, or I will come up with something even more inconvenient for you."@@
+	@@.guardian;"<<else>> <<endif>>It seems you're just asking to be treated accordingly. I've installed a camera in your room so I can monitor you, just in case your fetishes become a danger to your health. Don't even try to obscure the view, or I will come up with something even more inconvenient for you."@@
 	
 	When you try to argue that you need at least some privacy, $guardian interrupts you again.
 	
@@ -295,14 +293,19 @@
 	<<run window.itemFuncs.overrideItemMasterProperty("chastity", "isMale", true)>>\
 	<<run window.itemFuncs.overrideItemMasterProperty("buttplugs", "isMale", true)>>\
 	<<set $flags.clothesPurged to true>>\
-	<<set window.itemFuncs.enableItemVariant('maid_outfit_00')>>\
-	<<set window.itemFuncs.enableItemVariant('maid_outfit_01')>>\
-	<<addItemVariantToInventory 'maid_outfit_00'>>\
-	<<wearItemVariant 'maid_outfit_00'>>\
+	<<set window.itemFuncs.enableItemVariant('maid_dress')>>\
+	<<set window.itemFuncs.enableItemVariant('maid_dress_latex')>>\
+	<<set window.itemFuncs.enableItemVariant('maid_headband')>>\
+	<<addItemVariantToInventory 'maid_dress'>>\
+	<<wearItemVariant 'maid_dress'>>\
 	<<addItemVariantToInventory 'stockings_39'>>\
 	<<wearItemVariant 'stockings_39'>>\
 	<<addItemVariantToInventory 'heels_39'>>\
 	<<wearItemVariant 'heels_39'>>\
+	<<addItemVariantToInventory 'maid_headband'>>\
+	<<wearItemVariant 'maid_headband'>>\
+	<<addItemVariantToInventory 'choker_00'>>\
+	<<wearItemVariant 'choker_00'>>\
 	<<set window.itemNavigator.newOrUpdatedClothingSetFromWorn('Maid')>>\
 	<<if ($player.perversion.teacher gte 4) or $tasksTeacher.wearDressToSchool.status gt 0>>\
 		@@.guardian;"As for your regular clothes, I took $teacher's suggestion and gave away all your male clothing. She told me you prefer to wear dresses to school, anyway. There's no need for confusion.@@\
@@ -411,13 +414,15 @@
 	<<if $flags.guardianEvil>>\
 		<<set $player.perversion.guardian to 7>>\
 		<<set $flags.gTrialLatexMaid=true>>\
+		<<removeItemVariantFromInventory 'maid_dress'>>\
+		<<addItemVariantToInventory 'maid_dress_latex'>>\
+		<<wearItemVariant 'maid_dress_latex'>>\
 		<<addItemVariantToInventory 'stockings_latex_39'>>\
 		<<wearItemVariant 'stockings_latex_39'>>\
-		<<addItemVariantToInventory 'heels_stripper_00'>>\
-		<<wearItemVariant 'heels_stripper_00'>>\
 		<<set $flags.gTrialGiantVibroPlug to true>>\
 		<<addItemVariantToInventory 'buttplug_vibro'>>\
 		<<wearItemVariant 'buttplug_vibro'>>\
+		<<set window.itemNavigator.newOrUpdatedClothingSetFromWorn('Maid')>>\
 		Your eyes open suddenly to find $guardian angrily shaking you awake. There is a wild, unrestrained fire in $guardian's eyes. However, the absence of any of the normal empathy in her expression scares you the most.
 
 		@@.guardian;"Do I have your attention? I'd better."@@ She stares icily at your worried face, allowing you a moment to adjust to being awake so you can really understand the gravity of your situation.
@@ -470,7 +475,7 @@
 		<<if (not $flags.guardianCumDrink)>>\
 			@@.guardian;On weekends, I have arranged for you to serve as an aid at the sperm donor facility. There you'll help our clients to reach climax.@@\
 		<<endif>>\
-		@@.guardian;I'll be keeping an eye on how you do your chores. You can expect to me to punish you at the slightest sign of laziness or sloppy work. And don't worry, I will find more activities to occupy your time, too."@@
+		@@.guardian;I'll be keeping an eye on how you do your chores. You can expect me to punish you at the slightest sign of laziness or sloppy work. And don't worry, I will find more activities to occupy your time, too."@@
 		
 	<<else>>\
 		<<set $player.perversion.guardian to 6>>\
@@ -633,12 +638,21 @@
 			the familiar feeling of the butt-plug alarm vibrating in your anus. You thank the gods that you are not locked in chastity now and slowly stroke yourself, trying to prolong it until the end of the alarm 'signal'.
 			<<elseif $player.alarmProgress eq 9>>\
 			<<set $player.alarmProgress++>>\
-			the familiar feeling of the butt-plug alarm vibrating in your anus. Your penis is free, but being used to enduring it in chastity, you submit entirely to the sensation and just lie there, hugging your pillow as your penis twitches and dribbles streams of precum. The temptation to touch yourself is maddening, but each time, something holds you back.
-			
-			Finally, it stops, allowing you to withdraw the plug and put it on the night stand. You suddenly realize that you willingly endured the whole thing without touching yourself. You release the pillow and find that you have practically soaked the pillowcase, but your penis is limp despite how incredibly horny you are. You are not satisfied at all and can't even tell what pushed you to do that in the first place, but there is something compelling about surrendering to this longing for inescapable stimulation without release.
-			
-			An arousing idea comes to mind... if you managed to eventually enjoy this torture while in chastity, you might be able to when you're unlocked also. You decide to not touch yourself in the morning, no matter what.
-			
+			<<if $kinkAllow.bdsm>>\
+				Your penis is free and the butt-plug is vibrating away on your prostate, and you can't help but start masturbating. Having been teased throughout the night, you orgasm quickly, cum splattering all over your midriff and the sheets.
+				
+				In your post-orgasmic haze, you realize that you made a terrible mistake: the automatic vibrator has not finished "waking" you up, yet. What had been a pleasurable buzz on your insides a few seconds ago, quickly becomes a source of increasing discomfort.
+				
+				@@.hero;Why did I touch myself?@@ you groan as you squirm from the post-orgasm stimulation.
+				
+				Unable to handle the uncomfortable feeling, you resolve to not masturbate in the morning, no matter what.
+			<<else>>\
+				the familiar feeling of the butt-plug alarm vibrating in your anus. Your penis is free, but being used to enduring it in chastity, you submit entirely to the sensation and just lie there, hugging your pillow as your penis twitches and dribbles streams of precum. The temptation to touch yourself is maddening, but each time, something holds you back.
+				
+				Finally, it stops, allowing you to withdraw the plug and put it on the night stand. You suddenly realize that you willingly endured the whole thing without touching yourself. You release the pillow and find that you have practically soaked the pillowcase, but your penis is limp despite how incredibly horny you are. You are not satisfied at all and can't even tell what pushed you to do that in the first place, but there is something compelling about surrendering to this longing for inescapable stimulation without release.
+				
+				An arousing idea comes to mind... if you managed to eventually enjoy this torture while in chastity, you might be able to when you're unlocked also. You decide to not touch yourself in the morning, no matter what.
+			<<endif>>\
 			<<elseif $player.alarmProgress lt 13>>\
 			<<set $player.alarmProgress++>>\
 			the familiar feeling of the butt-plug alarm vibrating in your anus. Your penis is free, but you decide to accept the butt-plug's torture without touching yourself. You hug your pillow and moan into it as your penis looses a constant flow of precum, while your ass pulses relentlessly around the hellish device. The temptation to touch yourself is maddening, but you manage to stay true to your decision.
@@ -659,20 +673,17 @@
 			<<if $player.alarmProgress eq 0>>\
 			an alarm butt-plug vibrating in your anus bringing you to tears as your locked penis desperately strains against the cage. That was a hell of a way to start the day!
 			<<elseif $player.alarmProgress eq 1>>\
-			<<set $player.alarmProgress++>>\
 			the familiar feeling of the alarm butt-plug vibrating in your anus. You actually burst into tears, knowing that you can't get release any time soon.
 			<<elseif $player.alarmProgress eq 2>>\
-			<<set $player.alarmProgress++>>\
 			the familiar feeling of the alarm butt-plug vibrating in your anus. You moan into your pillow in desperation.
 			<<elseif $player.alarmProgress lt 5>>\
-			<<set $player.alarmProgress++>>\
 			the familiar feeling of the alarm butt-plug vibrating in your anus. You are tired of trying to resist this hellish device.
 			<<elseif $player.alarmProgress lte 8>>\
-			<<set $player.alarmProgress++>>\
 			the familiar feeling of the alarm butt-plug vibrating in your anus. A contented expression creeps onto your face as you realize that you're getting used to it.
 			<<else>>\
 			the familiar feeling of the alarm butt-plug vibrating in your anus. You feeling weirdly grateful to $guardian for putting you through this, as you are addicted to this feeling waking up.
 			<<endif>>\
+			<<set $player.alarmProgress++>>\
 		<<else>>\
 			the familiar feeling of the alarm butt-plug vibrating in your anus. You thank the gods that you are not locked in chastity now.
 		<<endif>>\

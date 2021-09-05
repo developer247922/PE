@@ -8,7 +8,7 @@ window.tasksFunction = {
 		for (var i=0; i < Object.keys(tasks).length; i++) {
 			var task=tasks[Object.keys(tasks)[i]];
 			var taskV=this.getVariableObject(task.id);
-			if ((taskV.status == 0) && taskV.canStart && (task.canStartDays.indexOf(time.weekDay()) >= 0) && ((taskV.startDay + task.cooldown) < time.day) && (player.perversion.guardian >= task.perversion.guardian.min) && (player.perversion.guardian <= task.perversion.guardian.max) && (player.perversion.teacher >= task.perversion.teacher.min) && (player.perversion.teacher <= task.perversion.teacher.max) && (player.perversion.therapist >= task.perversion.therapist.min) && (player.perversion.therapist <= task.perversion.therapist.max) && task.Conditions()) {
+			if ((taskV.status == 0) && taskV.canStart && (task.canStartDays.indexOf(window.timeCode.weekDay()) >= 0) && ((taskV.startDay + task.cooldown) < time.day) && (player.perversion.guardian >= task.perversion.guardian.min) && (player.perversion.guardian <= task.perversion.guardian.max) && (player.perversion.teacher >= task.perversion.teacher.min) && (player.perversion.teacher <= task.perversion.teacher.max) && (player.perversion.therapist >= task.perversion.therapist.min) && (player.perversion.therapist <= task.perversion.therapist.max) && task.Conditions()) {
 				var priority=task.startPriority;
 				if (taskV.startPriority != null) {
 					priority=taskV.startPriority;
@@ -235,7 +235,6 @@ window.tasksTeacher={
 			}
 		},
 		Conditions: function() {
-			//return (!playerCode.owns(itemsC.chastityDevice));
 			return (!inventoryFuncs.ownsMasterItem('chastity'));
 		},
 		image: "",
@@ -284,7 +283,6 @@ window.tasksTeacher={
 			}
 		},
 		Conditions: function() {
-			//return (!playerCode.owns(itemsC.silkyTeddy)) || ((!State.active.variables.therapistTalks.talkNightwear.start) && [0,1,2].includes(State.active.variables.player.perversion.guardian)) || [0,1].includes(State.active.variables.player.perversion.crossdressing);
 			return (!inventoryFuncs.ownsMasterItem('nightie')) || ((!State.active.variables.therapistTalks.talkNightwear.start) && [0,1,2].includes(State.active.variables.player.perversion.guardian)) || [0,1].includes(State.active.variables.player.perversion.crossdressing);
 		},
 		image: "",

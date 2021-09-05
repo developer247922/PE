@@ -344,7 +344,7 @@ window.wardrobeFuncs = {
         if(masterItem){
             var itemVariantClothingSlot = masterItem.clothingSlot;
             var currentlyWearing = actVar.player.clothingSlots[itemVariantClothingSlot];
-            console.log(currentlyWearing);
+            //console.log(currentlyWearing);
             if(currentlyWearing != null && currentlyWearing.masterItem == itemMaster){
                 return true;
             }
@@ -410,7 +410,7 @@ window.wardrobe = {
                 "schoolUniform",
                 "schoolDress",
                 "sluttySchoolDress",
-                "maid",
+                "maidDress",
             ]
         },
         socks: {

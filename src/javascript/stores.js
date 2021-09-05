@@ -39,7 +39,7 @@ window.stores=[
 				image: "Images/items/spy_camera.jpg",
 				description: "Spy Camera",
 				daring: 0,
-				checkFlag: ""
+				checkFlag: "canBuySpyCamera"
 			},
 			{
 				item: "hasStunGun",

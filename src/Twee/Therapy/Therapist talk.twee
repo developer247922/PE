@@ -944,7 +944,7 @@
 	
 	@@.heroT;"Well, first, I get up early. Earlier than I used to.@@\
 	<<if $flags.dreamgameCaughtWin>>\
-		@@.heroT;$Myguardian gave me a special butt-plug alarm. It wakes me up by vibrating like crazy, and it keeps going, on and on. And I can't pull it out, or it screeches and wails, so I just have to lie there and accept being tortured by the damn thing. It's hell! So, when I'm locked up in chastity, I start my day being //very// horny and frustrated."@@
+		@@.heroT;$Myguardian gave me a special butt-plug alarm. It wakes me up by vibrating like crazy, and it keeps going, on and on. And I can't pull it out, <<if not $kinkAllow.bondage>>or it screeches and wails, <<endif>>so I just have to lie there and accept being tortured by the damn thing. It's hell! So, when I'm locked up in chastity, I start my day being //very// horny and frustrated."@@
 
 	<<elseif $flags.vibratorCaught>>\
 		@@.heroT;$Myguardian gave me a special butt-plug alarm. It wakes me up by vibrating violently. When I'm locked in chastity, I have to start the day with it driving me crazy!"@@
@@ -1228,6 +1228,8 @@
 	In the end, your talk with $therapist doesn't reassure you completely, but you think she may have a point about the positive aspects of this unfortunate event.
 	
 <!--</talkPenisShrinking>-->\
+<<elseif ($scene eq "talkButsluttery")>>\
+<<goto "Therapist stimulation preference reassignment intro">>\
 <<endif>>\
 \
 <<set $scene="">>\

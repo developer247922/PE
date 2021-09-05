@@ -7,6 +7,10 @@ Your eyes settle on her old tape deck/radio gathering dust on her bookshelf.  Kn
 
 <<set $player.hasSpyCamera = false>>
 <<set $flags.cameraBedroom=true>>\
+<<if $flags.cameraBathroom>>\
+    /* installed cameras in both places – disable camera in store */\
+    <<set $player.canBuySpyCamera = false>>\
+<<endif>>\
 [[Return|Go to bedroom]]
 
 

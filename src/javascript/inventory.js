@@ -381,11 +381,11 @@ window.inventoryFuncs= {
 
         var itemVariants = window.itemFuncs.getChildItemsForMaster(itemMaster);
         for(var itemVariantIdx in itemVariants){
-            console.log(itemVariants[itemVariantIdx].variant);
-            console.log(this.isItemVariantOwned(itemVariants[itemVariantIdx].variant));
+            //console.log(itemVariants[itemVariantIdx].variant);
+            //console.log(this.isItemVariantOwned(itemVariants[itemVariantIdx].variant));
             if(this.isItemVariantOwned(itemVariants[itemVariantIdx].variant)){
                 var itemVariant = window.inventoryFuncs.getItemByVariant(itemVariants[itemVariantIdx].variant);
-                console.log(itemVariant);
+                //console.log(itemVariant);
                 for(var inventoryIdx in actVar.inventory){
                     var inventoryItem = actVar.inventory[inventoryIdx];
                     if(typeof inventoryItem == 'object' && inventoryItem.variant == itemVariant.variant){

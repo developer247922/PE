@@ -1,14 +1,4 @@
 window.misc={
-	unpostponeClothes_d: function(type) {
-		var itemsC=window.itemsC;
-		var items=State.active.variables.items;
-		for (var i=0; i < Object.keys(items).length; i++) {
-			if (items[Object.keys(items)[i]].postponed) {
-				items[Object.keys(items)[i]].postponed=false;
-			}
-		}
-		return;
-	},
 	resetGuardian: function() {
 		State.active.variables.guardian=State.active.variables.babysitter;
 		State.active.variables.Guardian=State.active.variables.babysitter;
@@ -19,20 +9,6 @@ window.misc={
 		if (kink) {return "checked"}
 		return "unchecked";
 	},
-	// getSnoopItems: function() {
-	// 	var ra=[];
-	// 	var sia=[itemsC.pantiesCotton, itemsC.vibrator, itemsC.playgirlMagazine];
-	// 	var pantiesVar = window.itemF.itemTwee("pantiesCotton");
-	// 	for (var i=0; i < sia.length; i++) {
-	// 		if (sia[i] == itemsC.pantiesCotton && playerCode.owns(sia[i]) && !pantiesVar.ownAlt[40]){
-	// 			ra.push(sia[i]);
-	// 		}
-	// 		else if (!playerCode.owns(sia[i])) {
-	// 			ra.push(sia[i]);
-	// 		}
-	// 	}
-	// 	return ra;
-	// },
 	getSnoopItems: function() {
 		if(SugarCube.State){
             var actVar = SugarCube.State.active.variables;
