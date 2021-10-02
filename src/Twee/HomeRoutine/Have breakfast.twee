@@ -931,8 +931,8 @@
 			
 			@@.guardian;"I just wanted to ask if you are ok."@@
 			
-			[[Say that you loved it|Guardian kinky reward][$scene="strapon yes";$time.addMinutes(30); $player.perversion.guardianCorruption=18]]
-			[[Say that it was too weird|Guardian kinky reward][$scene="strapon no";$time.addMinutes(30); $player.perversion.guardianCorruption=17]]
+			[[Say that you loved it|Guardian kinky reward][$scene="strapon yes";window.timeCode.addMinutes(30); $player.perversion.guardianCorruption=18]]
+			[[Say that it was too weird|Guardian kinky reward][$scene="strapon no";window.timeCode.addMinutes(30); $player.perversion.guardianCorruption=17]]
 			
 		<<elseif $flags.gTrialStrapOn and (not $flags.guardianStrapon) and (not $flags.straponSurprise) and [5,6].includes($player.perversion.guardian)>>\	
 			<<set $flags.straponSurprise = true>>\
@@ -1303,7 +1303,7 @@
 			You <<if not window.timeCode.isWeekend()>>feel hot as you understand what she is implying. You <<endif>>turn back to her, lift your skirt and push out your butt, and are rewarded with a sound slap on your rump. You go back to your room with a hitch in your step.
 		<<endif>>\
 		<!--</breakfast finish>*********************-->\
-		<<set $time.addMinutes(30)>>\
+		<<set window.timeCode.addMinutes(30)>>\
 		<<if $player.moreBlowjobs>>\
 		
 			Your jaw feels stronger today.

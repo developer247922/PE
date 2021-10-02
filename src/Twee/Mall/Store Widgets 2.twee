@@ -24,12 +24,12 @@
         <<set _chastity=window.wardrobeFuncs.getWornItem('chastity')>>\
         
         <<if window.timeCode.isArcadeOpen()>>
-            [[Play in the arcade][$time.addMinutes(5)]]<br>
+            [[Play in the arcade][window.timeCode.addMinutes(5)]]<br>
         <<else>>
             @@.halftransparent;Play in the arcade - closed@@<br>
         <<endif>>
         
-        [[Go to mall toilet][$time.addMinutes(10);$flags.cameraRecording to false]]<br>
+        [[Go to mall toilet][window.timeCode.addMinutes(10);$flags.cameraRecording to false]]<br>
 
         <<if (($tasksTeacher.trialChastity.status eq 1) and (not _chastity) and (not _analPlug)) or ($tasksTeacher.trialChastity.status eq 5)>>
             [[Ask about the market research opportunity|Task Trial chastity]]<br>

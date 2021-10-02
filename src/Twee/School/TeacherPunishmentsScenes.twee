@@ -2046,7 +2046,7 @@
 		<<endif>>\
 	<<endif>>\
 	<<set $player.punishments.refusedToPay = false>>\
-	<<set $time.addMinutes(30)>>\
+	<<set window.timeCode.addMinutes(30)>>\
 	<<if window.timeCode.isFriday() && $cheerleaders.progress == 8>>\
 		[[Go meeet the cheer squad for the competition|Go to Cheerleading Practice]]
 	<<elseif $cheerFriend.currentSE > 0 && $cheerFriend.currentSE != 5 && $cheerFriend.currentSE != 9>>\

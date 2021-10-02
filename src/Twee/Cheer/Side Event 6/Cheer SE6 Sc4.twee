@@ -74,5 +74,5 @@ After several more minutes of enjoying each other’s company, $cheerFriend.name
 
 <<set $cheerFriend.currentSE = 0>>\
 <<set $cheerFriend.progress += 1>>\
-<<set $time.addMinutes(120)>>\
+<<set window.timeCode.addMinutes(120)>>\
 <<display [[Travel]]>>

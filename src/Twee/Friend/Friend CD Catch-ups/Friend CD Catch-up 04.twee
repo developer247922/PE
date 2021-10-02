@@ -22,7 +22,7 @@
 	
 	<<set $friendG.wordlessGoodbye = true>>\
 	<<set $friendG.friendTaskFrustration += 3>>\
-	[[Leave friend's house][$time.addMinutes(90)]]
+	[[Leave friend's house][window.timeCode.addMinutes(90)]]
 <<elseif not _outer.isFemale>>\
 	<<include [[Friend Hang Out]]>>\
 <<else>>\
@@ -193,5 +193,5 @@
 	<<addItemVariantToInventory 'corset_73'>>\ <!-- TODO Corsets? -->
 	<<addItemVariantToInventory 'sexy_panties_64'>>\
 	<<addItemVariantToInventory 'high_heels_72'>>\
-	[[Leave friend's house][$time.addMinutes(90)]]
+	[[Leave friend's house][window.timeCode.addMinutes(90)]]
 <<endif>>

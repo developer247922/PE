@@ -41,5 +41,5 @@ With that, Rachel leaves. You breathe a sigh to release some pent up tension, an
 
 <<set $cheerleaders.progress = 9>>\
 <<set $player.fitness++>>\
-<<set $time.addMinutes(240)>>\
+<<set window.timeCode.addMinutes(240)>>\
 <<display [[Travel]]>>
