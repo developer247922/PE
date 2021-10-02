@@ -80,7 +80,6 @@ window.structures={
 		this.setupFriend();
 		this.setupFuta();
 		this.setupQuickSlot();
-		//this.setupItems();
 		this.setupChores();
 		this.setupDreams();
 		this.setupLocations();
@@ -102,6 +101,11 @@ window.structures={
 	},
 	setupPlayer: function() {
 		var vars = State.active.variables;
+		if (vars.player && typeof vars.player.masturbationType == "number") {
+			// backwards compatibility with non-structured masturbation types
+			// just delete the stored type – it is used for the guardian's reaction only (non-critical)
+			delete vars.player.masturbationType;
+		}
 		vars.player = this.updateStructure(vars.player, window.playerList, "player");
 		vars.player = this.updateStructure(vars.player, window.playerAddonsList, "player");
 		// backwards compatibility for versions without Patreon compliance
@@ -247,11 +251,12 @@ window.structures={
 	setupKinks: function() {
 		var vars = State.active.variables;
 		vars.kinkAllow = this.updateStructure(vars.kinkAllow, window.kinkList, "kink");
+		vars.kink = this.updateStructure(vars.kink, window.kinkList, "kink");
 		// kinkAllow controls what is shown to the player
 		// kink describes what the PC likes
 		// kinkAllow is more permissive than kink
 		// vars.kink = vars.kinkAllow; – this happens StoryCaption
-		// kinka were previously enabled by hypnotherapy, currently just a copy
+		// kinks are now enabled by therapy (again)
 	},
 	setupBody: function() {
 		var bodyList=window.bodyList;
@@ -309,53 +314,7 @@ window.structures={
 			}
 		}
 	},
-
-	setupItems_d: function() {
-		var itemsC=window.itemsC;
-		if (State.active.variables.items == null) {
-			State.active.variables.items = {};
-		}
-		
-		for (var i=0; i < Object.keys(itemsC).length; i++) {
-			if (State.active.variables.items[Object.keys(itemsC)[i]] == null) {
-				State.active.variables.items[Object.keys(itemsC)[i]] = {};
-				
-				var itemObject = State.active.variables.items[Object.keys(itemsC)[i]];
-				var listItemsC = itemsC[Object.keys(itemsC)[i]];
-				
-				itemObject.id = listItemsC.id;
-				
-				if (listItemsC.clothingType > 0) {
-					if (itemObject.ward == null) { itemObject.ward = false; }
-				}
-				
-				if (listItemsC.maxAlt != null) {
-					if (itemObject.curAlt == null) { itemObject.curAlt = 0; }
-					if (itemObject.ownAlt == null) { itemObject.ownAlt = []; }
-					if (itemObject.storeCur == null) { itemObject.storeCur = 0; }
-					if (itemObject.storeAlt == null) { itemObject.storeAlt = []; }
-				}
-				
-			}
-		}
-		
-		// deleting items with no corresponding ID in JavaScript list
-		var itemsList = State.active.variables.items;
-		for (var i=0; i < Object.keys(itemsList).length; i++) {
-			var found = false;
-			
-			for (var j=0; j < Object.keys(itemsC).length; j++) {
-				if (itemsList[Object.keys(itemsList)[i]].id == itemsC[Object.keys(itemsC)[j]].id) {
-					var found = true;
-					break;
-				}
-			}
-			
-			if (!found) {
-				delete itemsList[Object.keys(itemsList)[i]];
-			}
-		}
-	},
+	
 	setupChores: function() {
 		var choresList=window.choresList;
 		if (State.active.variables.chores == null) {
@@ -807,7 +766,10 @@ window.playerList={
 	shoppingType: 0,
 	uploadType: 0,
 	checkPlace: 0,
-	masturbationType: 0,
+	masturbationType: { 
+		tool: undefined, /* may be "HorseDildo" "Playgirl" "Porn" "Spycam" "TrainingCock" "VibratorOnAss" "VibratorOnPenis" */
+		orgasm: undefined /* may be "denied" (due to cage), "anal", "penile", "unable" (due to PDS) */
+	}, 
 	buttplugInflate: 0,
 	alarmProgress: 0,
 	bjDildoProgress: 0,
@@ -882,6 +844,7 @@ window.playerList={
 	canBuyBatteries: true,
 	canBuyQualityBatteries: false,
 	canBuyNailPolish: false,
+	canBuySpyCamera: true,
 
 	alarmClockCost: 20,
 	batteriesCost: 5,
@@ -1000,15 +963,21 @@ window.playerAddonsList={
 		ending: -1,
 	},
 	masturbate: {
-		lastDay: 0,
-		lastHour: 0,
-		lastMinute: 0,
-		DayTemp: 0,
-		HourTemp: 0,
-		MinuteTemp: 0,
-		DayTease: 0,
-		HourTease: 0,
-		MinuteTease: 0
+		last : {
+			day: 0,
+			hour: 0,
+			minute: 0
+		},
+		temp : {
+			day: 0,
+			hour: 0,
+			minute: 0
+		},
+		tease : {
+			day: 0,
+			hour: 0,
+			minute: 0
+		}
 	},
 	exp: {
 		crossdressingExp: 0,
@@ -2115,6 +2084,7 @@ window.flagsList={
 	storeLastRefreshed: [-10,-10,-10,-10,-10,-10,-10,-10,-10,-10,-10,-10,-10,-10,-10,-10,-10,-10,-10,-10],
 	refreshTravel: false,
 	holdPaymentIncrease: false,
+	playerChoseChastity: false, // whether PC eagerly chose to wear the chastity cage (non-blackmail route)
 },
 
 window.kinkList={

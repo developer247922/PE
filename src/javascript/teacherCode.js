@@ -732,7 +732,6 @@ window.teacherPunishments = {
 		priority:	1,
 		baseReq:	{ teacher: [0, 6], guardian: [0, 10], therapist: [0, 10], penalties: [2, 6] },
 		extraReq:	function () {
-					//return State.active.variables.kinkAllow.tattoo && (!playerCode.owns(itemsC.tattooBunny));
 					return State.active.variables.kinkAllow.tattoo && (!inventoryFuncs.isItemVariantOwned('tattoo_bunny'));
 				},
 		cooldown:	1,	// Cooldown in days since last given
@@ -751,7 +750,6 @@ window.teacherPunishments = {
 		priority:	1,
 		baseReq:	{ teacher: [4, 6], guardian: [0, 10], therapist: [0, 10], penalties: [3, 7] },
 		extraReq:	function () {
-					//return (!playerCode.owns(itemsC.tattooButterfly)) && State.active.variables.kinkAllow.tattoo;
 					return (!inventoryFuncs.isItemVariantOwned('tattoo_butterfly')) && State.active.variables.kinkAllow.tattoo;
 				},
 		cooldown:	1,	// Cooldown in days since last given
@@ -770,7 +768,6 @@ window.teacherPunishments = {
 		priority:	1,
 		baseReq:	{ teacher: [4, 6], guardian: [0, 10], therapist: [0, 10], penalties: [4, 7] },
 		extraReq:	function () {
-					//return (!playerCode.owns(itemsC.tattooStockings)) && State.active.variables.kinkAllow.tattoo;
 					return (!inventoryFuncs.isItemVariantOwned('tattoo_stockings')) && State.active.variables.kinkAllow.tattoo;
 				},
 		cooldown:	1,	// Cooldown in days since last given
@@ -789,7 +786,6 @@ window.teacherPunishments = {
 		priority:	1,
 		baseReq:	{ teacher: [6, 11], guardian: [0, 10], therapist: [0, 10], penalties: [6, 10] },
 		extraReq:	function () {
-					//return (!playerCode.owns(itemsC.tattooStupidWhore)) && State.active.variables.kinkAllow.tattoo;
 					return (!inventoryFuncs.isItemVariantOwned('tattoo_stupidwhore')) && State.active.variables.kinkAllow.tattoo;
 				},
 		cooldown:	1,	// Cooldown in days since last given
@@ -808,7 +804,6 @@ window.teacherPunishments = {
 		priority:	1,
 		baseReq:	{ teacher: [6, 11], guardian: [0, 10], therapist: [0, 10], penalties: [6, 9] },
 		extraReq:	function () {
-					//return (!playerCode.owns(itemsC.tattooSlut)) && State.active.variables.kinkAllow.tattoo;
 					return (!inventoryFuncs.isItemVariantOwned('tattoo_slut')) && State.active.variables.kinkAllow.tattoo;
 				},
 		cooldown:	1,	// Cooldown in days since last given
@@ -827,7 +822,6 @@ window.teacherPunishments = {
 		priority:	1,
 		baseReq:	{ teacher: [6, 11], guardian: [0, 10], therapist: [0, 10], penalties: [6, 9] },
 		extraReq:	function () {
-					//return (!playerCode.owns(itemsC.tattooSissy)) && State.active.variables.kinkAllow.tattoo;
 					return (inventoryFuncs.isItemVariantOwned('tattoo_sissy')) && State.active.variables.kinkAllow.tattoo;
 				},
 		cooldown:	1,	// Cooldown in days since last given
@@ -846,7 +840,6 @@ window.teacherPunishments = {
 		priority:	1,
 		baseReq:	{ teacher: [6, 11], guardian: [0, 10], therapist: [0, 10], penalties: [6, 9] },
 		extraReq:	function () {
-					//return (!playerCode.owns(itemsC.tattooHeart)) && State.active.variables.kinkAllow.tattoo;
 					return (!inventoryFuncs.isItemVariantOwned('tattoo_heart')) && State.active.variables.kinkAllow.tattoo;
 				},
 		cooldown:	1,	// Cooldown in days since last given
@@ -885,7 +878,6 @@ window.teacherPunishments = {
 		priority:	1,
 		baseReq:	{ teacher: [5, 11], guardian: [0, 10], therapist: [0, 10], penalties: [2, 8] },
 		extraReq:	function () {
-					//return (!playerCode.owns(itemsC.PiercingNipples)) && State.active.variables.kinkAllow.piercing;
 					return (!(State.active.variables.body.nipplesPierced.level > 0)) && State.active.variables.kinkAllow.piercing;
 				},
 		cooldown:	1,	// Cooldown in days since last given
@@ -904,7 +896,6 @@ window.teacherPunishments = {
 		priority:	1,
 		baseReq:	{ teacher: [6, 11], guardian: [0, 10], therapist: [0, 10], penalties: [2, 8] },
 		extraReq:	function () {
-					//return (!playerCode.owns(itemsC.PiercingLips)) && State.active.variables.kinkAllow.piercing;
 					return (!(State.active.variables.body.lipsPierced.level > 0)) && State.active.variables.kinkAllow.piercing;
 				},
 		cooldown:	1,	// Cooldown in days since last given
@@ -923,7 +914,6 @@ window.teacherPunishments = {
 		priority:	1,
 		baseReq:	{ teacher: [6, 11], guardian: [0, 10], therapist: [0, 10], penalties: [3, 8] },
 		extraReq:	function () {
-					//return (!playerCode.owns(itemsC.PiercingBelly)) && State.active.variables.kinkAllow.piercing;
 					return (!(State.active.variables.body.bellyPierced.level > 0)) && State.active.variables.kinkAllow.piercing;
 				},
 		cooldown:	1,	// Cooldown in days since last given
@@ -942,7 +932,6 @@ window.teacherPunishments = {
 		priority:	1,
 		baseReq:	{ teacher: [6, 11], guardian: [0, 10], therapist: [0, 10], penalties: [3, 8] },
 		extraReq:	function () {
-					//return (!playerCode.owns(itemsC.PiercingNose)) && State.active.variables.kinkAllow.piercing;
 					return (!(State.active.variables.body.nosePierced.level >0)) && State.active.variables.kinkAllow.piercing;
 				},
 		cooldown:	1,	// Cooldown in days since last given
